@@ -31,4 +31,9 @@ module Enumerable
       self.to_enum(:my_select)
     end
   end
+
+  def my_all? pattern=nil
+
+  end
+
 end
