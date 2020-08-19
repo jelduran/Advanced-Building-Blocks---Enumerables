@@ -37,6 +37,8 @@ module Enumerable
       self.my_each {|item| return false unless yield item} if self.is_a?(Array)
       self.my_each {|key,value| return false unless yield [key,value]} if self.is_a?(Hash)
       true
+    elsif pattern
+      self.my_all? {|item| pattern===item}
     end
   end
 
