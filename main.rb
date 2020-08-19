@@ -39,6 +39,8 @@ module Enumerable
       true
     elsif pattern
       self.my_all? {|item| pattern===item}
+    else
+      self.my_all? {|item| item}
     end
   end
 
