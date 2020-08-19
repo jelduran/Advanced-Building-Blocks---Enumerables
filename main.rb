@@ -33,7 +33,9 @@ module Enumerable
   end
 
   def my_all? pattern=nil
-
+    if block_given?
+      
+    end
   end
 
 end
