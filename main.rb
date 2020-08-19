@@ -22,6 +22,6 @@ module Enumerable
   end
 
   def my_select
-    
+    self.is_a?(Hash) ? new_enumerable = {} : new_enumerable = []
   end
 end
