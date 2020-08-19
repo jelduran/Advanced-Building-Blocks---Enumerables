@@ -5,6 +5,8 @@ module Enumerable
       self.length.times {|index| yield(self[index])} if self.is_a?(Array)
       self.length.times {|index| yield(keys[index],self[keys[index]])} if self.is_a?(Hash)
       self
+    else
+      self.to_enum(:my_each)
     end
   end
 end
