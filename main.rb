@@ -21,4 +21,7 @@ module Enumerable
     end
   end
 
+  def my_select
+    
+  end
 end
