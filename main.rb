@@ -27,6 +27,8 @@ module Enumerable
       self.my_each {|item| new_enumerable.push(item) if yield(item)} if self.is_a?(Array)
       self.my_each {|key,value| new_enumerable[key]=value if yield(key,value)} if self.is_a?(Hash)
       new_enumerable
+    else
+      self.to_enum(:my_select)
     end
   end
 end
