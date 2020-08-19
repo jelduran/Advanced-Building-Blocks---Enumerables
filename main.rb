@@ -24,7 +24,7 @@ module Enumerable
   def my_select
     self.is_a?(Hash) ? new_enumerable = {} : new_enumerable = []
     if block_given?
-      
+      self.my_each {|item| new_enumerable.push(item) if yield(item)} if self.is_a?(Array)
     end
   end
 end
