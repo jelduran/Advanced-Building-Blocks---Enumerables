@@ -36,6 +36,7 @@ module Enumerable
     if block_given?
       self.my_each {|item| return false unless yield item} if self.is_a?(Array)
       self.my_each {|key,value| return false unless yield [key,value]} if self.is_a?(Hash)
+      true
     end
   end
 
