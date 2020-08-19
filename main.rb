@@ -68,4 +68,7 @@ module Enumerable
     end
   end
 
+  def my_count search=nil
+    
+  end
 end
