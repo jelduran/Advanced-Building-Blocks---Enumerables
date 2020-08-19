@@ -34,7 +34,7 @@ module Enumerable
 
   def my_all? pattern=nil
     if block_given?
-      
+      self.my_each {|item| return false unless yield item} if self.is_a?(Array)
     end
   end
 
