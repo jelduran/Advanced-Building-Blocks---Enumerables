@@ -23,5 +23,8 @@ module Enumerable
 
   def my_select
     self.is_a?(Hash) ? new_enumerable = {} : new_enumerable = []
+    if block_given?
+      
+    end
   end
 end
