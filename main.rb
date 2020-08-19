@@ -44,4 +44,15 @@ module Enumerable
     end
   end
 
+  def my_any? pattern=nil
+    if block_given?
+      self.my_each {|item| return true if yield item} if self.is_a?(Array)
+      self.my_each {|key,value| return true if yield [key,value]} if self.is_a?(Hash)
+      false
+    elsif pattern
+      self.my_any? {|item| pattern===item}
+    else
+      self.my_any? {|item| item}
+    end
+  end
 end
