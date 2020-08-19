@@ -55,4 +55,17 @@ module Enumerable
       self.my_any? {|item| item}
     end
   end
+
+  def my_none? pattern=nil
+    if block_given?
+      self.my_each {|item| return false if yield item} if self.is_a?(Array)
+      self.my_each {|key,value| return false if yield [key,value]} if self.is_a?(Hash)
+      true
+    elsif pattern
+      self.my_none? {|item| pattern===item}
+    else
+      self.my_none? {|item| item}
+    end
+  end
+
 end
