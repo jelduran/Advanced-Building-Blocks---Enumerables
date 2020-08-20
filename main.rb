@@ -70,5 +70,8 @@ module Enumerable
 
   def my_count search=nil
     counter = 0
+    if block_given?
+      
+    end
   end
 end
