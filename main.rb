@@ -99,7 +99,7 @@ module Enumerable
   end
 
   def multiply_els
-
+    self.my_inject(&:*)
   end
 
 end
