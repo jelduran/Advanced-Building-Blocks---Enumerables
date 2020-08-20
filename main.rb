@@ -91,4 +91,9 @@ module Enumerable
       self.to_enum(:my_map)
     end
   end
+
+  def my_inject(memo=nil,&sym)
+
+  end
+
 end
