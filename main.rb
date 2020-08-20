@@ -82,6 +82,6 @@ module Enumerable
   end
 
   def my_map
-
+    map = []
   end
 end
