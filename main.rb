@@ -74,6 +74,8 @@ module Enumerable
       self.my_each {|item| counter+=1 if yield(item)} if self.is_a?(Array)
       self.my_each {|key,value| counter+=1 if yield([key,value])} if self.is_a?(Hash)
       counter
+    elsif search
+      self.my_count {|item| item==search}
     end
   end
 end
