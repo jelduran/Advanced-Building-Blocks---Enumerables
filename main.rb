@@ -87,6 +87,10 @@ module Enumerable
       self.my_each {|item| map << proc.call(item)} if self.is_a?(Array)
       self.my_each {|key,value| map << proc.call([key,value])} if self.is_a?(Hash)
       map
+    elsif block_given?
+      self.my_each {|item| map << yield(item)} if self.is_a?(Array)
+      self.my_each {|key,value| map << yield([key,value])} if self.is_a?(Hash)
+      map
     else
       self.to_enum(:my_map)
     end
