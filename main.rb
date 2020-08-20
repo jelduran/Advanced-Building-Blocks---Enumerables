@@ -93,7 +93,7 @@ module Enumerable
   end
 
   def my_inject(memo=nil,&sym)
-
+    self.my_each {|item| memo.nil? ? memo=item : memo=yield(memo,item)} if self.is_a?(Array)
   end
 
 end
