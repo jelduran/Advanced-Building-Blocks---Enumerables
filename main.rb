@@ -83,5 +83,8 @@ module Enumerable
 
   def my_map
     map = []
+    if block_given?
+
+    end
   end
 end
