@@ -86,6 +86,7 @@ module Enumerable
     if block_given?
       self.my_each {|item| map << yield(item)} if self.is_a?(Array)
       self.my_each {|key,value| map << yield([key,value])} if self.is_a?(Hash)
+      map
     end
   end
 end
