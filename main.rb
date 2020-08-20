@@ -81,11 +81,11 @@ module Enumerable
     end
   end
 
-  def my_map
+  def my_map proc=nil
     map = []
-    if block_given?
-      self.my_each {|item| map << yield(item)} if self.is_a?(Array)
-      self.my_each {|key,value| map << yield([key,value])} if self.is_a?(Hash)
+    if proc.is_a?(Proc)
+      self.my_each {|item| map << proc.call(item)} if self.is_a?(Array)
+      self.my_each {|key,value| map << proc.call([key,value])} if self.is_a?(Hash)
       map
     else
       self.to_enum(:my_map)
