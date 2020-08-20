@@ -69,6 +69,6 @@ module Enumerable
   end
 
   def my_count search=nil
-    
+    counter = 0
   end
 end
