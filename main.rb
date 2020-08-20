@@ -84,7 +84,7 @@ module Enumerable
   def my_map
     map = []
     if block_given?
-
+      self.my_each {|item| map << yield(item)} if self.is_a?(Array)
     end
   end
 end
