@@ -76,6 +76,8 @@ module Enumerable
       counter
     elsif search
       self.my_count {|item| item==search}
+    else
+      self.length
     end
   end
 end
