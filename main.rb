@@ -80,4 +80,8 @@ module Enumerable
       self.length
     end
   end
+
+  def my_map
+
+  end
 end
