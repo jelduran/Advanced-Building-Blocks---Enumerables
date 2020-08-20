@@ -87,6 +87,8 @@ module Enumerable
       self.my_each {|item| map << yield(item)} if self.is_a?(Array)
       self.my_each {|key,value| map << yield([key,value])} if self.is_a?(Hash)
       map
+    else
+      self.to_enum(:my_map)
     end
   end
 end
