@@ -98,4 +98,8 @@ module Enumerable
     memo
   end
 
+  def multiply_els
+
+  end
+
 end
