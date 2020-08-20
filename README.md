@@ -17,7 +17,7 @@ This is the list of the methods that we created:
 - my_inject
 - multiply_els
  
-![screenshot](none)
+![Screenshot](/img/my-enum-methods.png)
 
 
 ## Built With
@@ -27,11 +27,11 @@ This is the list of the methods that we created:
 
 ## Live Demo
 
-[Live Demo Link](https://repl)
+[Live Demo Link](https://repl.it/join/gisxltke-jelduran)
 
 
 ## Commands
-please properly use linters to contribute
+Please properly use linters to contribute
 
 
 ## Author
@@ -50,7 +50,7 @@ please properly use linters to contribute
 - Twitter: [@jelduran](https://twitter.com/jelduran)
 - Linkedin: [@jelduran](https://www.linkedin.com/in/jelduran)
 
-##Getting Started
+## Getting Started
 To get a local copy up and running follow these simple example steps.
 
 Open the terminal command line window
