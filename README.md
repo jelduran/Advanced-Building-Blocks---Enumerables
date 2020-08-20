@@ -47,8 +47,8 @@ please properly use linters to contribute
 👤 John Elvis Durán Montoya 
 
 - Github: [@jelduran](https://github.com/jelduran)
-- Twitter: [@jelduran](https://twitter.com/)
-- Linkedin: [@jelduran](https://www.linkedin.com/)
+- Twitter: [@jelduran](https://twitter.com/jelduran)
+- Linkedin: [@jelduran](https://www.linkedin.com/jelduran)
 
 ##Getting Started
 To get a local copy up and running follow these simple example steps.
