@@ -1,1 +1,4 @@
 .idea
+.rubocop.yml
+Gemfile
+Gemfile.lock
