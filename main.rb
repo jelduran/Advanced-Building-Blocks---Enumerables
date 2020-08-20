@@ -95,6 +95,7 @@ module Enumerable
   def my_inject(memo=nil,&sym)
     self.my_each {|item| memo.nil? ? memo=item : memo=yield(memo,item)} if self.is_a?(Array)
     self.my_each {|key,value| memo.nil? ? memo=[key,value] : memo=yield(memo,[key,value])} if self.is_a?(Hash)
+    memo
   end
 
 end
