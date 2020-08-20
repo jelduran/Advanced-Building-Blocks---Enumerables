@@ -71,7 +71,7 @@ module Enumerable
   def my_count search=nil
     counter = 0
     if block_given?
-      
+      self.my_each {|item| counter+=1 if yield(item)} if self.is_a?(Array)
     end
   end
 end
