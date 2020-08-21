@@ -1,19 +1,17 @@
 module Enumerable
   def my_each
-    keys = self.keys if is_a?(Hash)
     return to_enum(:my_each) unless block_given?
 
-    length.times { |index| yield(self[index]) } if is_a?(Array)
-    length.times { |index| yield(keys[index], self[keys[index]]) } if is_a?(Hash)
+    enum = to_a
+    enum.length.times { |index| yield(enum[index]) }
     self
   end
 
   def my_each_with_index
-    keys = self.keys if is_a?(Hash)
-    return to_enum(:my_each_with_index) unless block_given?
+    return to_enum(:my_each) unless block_given?
 
-    length.times { |index| yield(self[index], index) } if is_a?(Array)
-    length.times { |index| yield([keys[index], self[keys[index]]], index) } if is_a?(Hash)
+    enum = to_a
+    enum.length.times { |index| yield(enum[index], index) }
     self
   end
 
