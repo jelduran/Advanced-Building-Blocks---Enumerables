@@ -1,39 +1,34 @@
 module Enumerable
   def my_each
     keys = self.keys if is_a?(Hash)
-    if block_given?
-      length.times { |index| yield(self[index]) } if is_a?(Array)
-      length.times { |index| yield(keys[index], self[keys[index]]) } if is_a?(Hash)
-      self
-    end
-    to_enum(:my_each)
+    return to_enum(:my_each) unless block_given?
+
+    length.times { |index| yield(self[index]) } if is_a?(Array)
+    length.times { |index| yield(keys[index], self[keys[index]]) } if is_a?(Hash)
+    self
   end
 
   def my_each_with_index
     keys = self.keys if is_a?(Hash)
-    if block_given?
-      length.times { |index| yield(self[index], index) } if is_a?(Array)
-      length.times { |index| yield([keys[index], self[keys[index]]], index) } if is_a?(Hash)
-      self
-    end
-    to_enum(:my_each_with_index)
+    return to_enum(:my_each_with_index) unless block_given?
+
+    length.times { |index| yield(self[index], index) } if is_a?(Array)
+    length.times { |index| yield([keys[index], self[keys[index]]], index) } if is_a?(Hash)
+    self
   end
 
   def my_select
     new_enumerable = []
-    if block_given?
-      is_a?(Array) ? my_each { |item| new_enumerable.push(item) if yield(item) } : new_enumerable = {}
-      my_each { |key, value| new_enumerable[key] = value if yield(key, value) } if is_a?(Hash)
-      return new_enumerable
-    end
-    to_enum(:my_select)
+    return to_enum(:my_select) unless block_given?
+
+    is_a?(Array) ? my_each { |item| new_enumerable.push(item) if yield(item) } : new_enumerable = {}
+    my_each { |key, value| new_enumerable[key] = value if yield(key, value) } if is_a?(Hash)
+    new_enumerable
   end
 
   def my_all?(pattern = nil)
-    if block_given?
-      my_each_with_index { |item| return false unless yield item }
-      return true
-    end
+    return my_all? { |item| item } unless block_given?
+
     if pattern
       case pattern.class.to_s
       when 'Class' then my_all? { |item| item.is_a?(pattern) }
@@ -41,15 +36,14 @@ module Enumerable
       else false
       end
     else
-      my_all? { |item| item }
+      my_each_with_index { |item| return false unless yield item }
+      true
     end
   end
 
   def my_any?(pattern = nil)
-    if block_given?
-      my_each_with_index { |item| return true if yield item }
-      return false
-    end
+    return my_any? { |item| item } unless block_given?
+
     if pattern
       case pattern.class.to_s
       when 'Class' then my_any? { |item| item.is_a?(pattern) }
@@ -57,15 +51,14 @@ module Enumerable
       else false
       end
     else
-      my_any? { |item| item }
+      my_each_with_index { |item| return true if yield item }
+      false
     end
   end
 
   def my_none?(pattern = nil)
-    if block_given?
-      my_each_with_index { |item| return false if yield item }
-      return true
-    end
+    return my_none? { |item| item } unless block_given?
+
     if pattern
       case pattern.class.to_s
       when 'Class' then my_none? { |item| item.is_a?(pattern) }
@@ -73,31 +66,33 @@ module Enumerable
       else false
       end
     else
-      my_none? { |item| item }
+      my_each_with_index { |item| return false if yield item }
+      true
     end
   end
 
   def my_count(search = nil)
     counter = 0
-    if block_given?
+    return length unless block_given?
+
+    if search
+      my_count { |item| item == search }
+    else
       my_each_with_index { |item| counter += 1 if yield(item) }
-      return counter
+      counter
     end
-    my_count { |item| item == search } if search
-    length
   end
 
   def my_map(proc = nil)
     map = []
+    return to_enum(:my_map) unless block_given?
+
     if proc.is_a?(Proc)
       my_each_with_index { |item| map << proc.call(item) }
-      return map
-    end
-    if block_given?
+    else
       my_each_with_index { |item| map << yield(item) }
-      return map
     end
-    to_enum(:my_map)
+    map
   end
 
   def my_inject(memo = nil, &_sym)
