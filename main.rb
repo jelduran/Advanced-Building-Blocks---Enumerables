@@ -16,85 +16,87 @@ module Enumerable
   end
 
   def my_select
-    new_enumerable = []
+    new_enum = []
     return to_enum(:my_select) unless block_given?
 
-    is_a?(Array) ? my_each { |item| new_enumerable.push(item) if yield(item) } : new_enumerable = {}
-    my_each { |key, value| new_enumerable[key] = value if yield(key, value) } if is_a?(Hash)
-    new_enumerable
+    my_each { |item| new_enum.push(item) if yield(item) }
+    is_a?(Hash) ? new_enum.to_h : new_enum
   end
 
   def my_all?(pattern = nil)
-    return my_all? { |item| item } unless block_given?
-
+    if block_given?
+      my_each_with_index { |item| return false unless yield item }
+      return true
+    end
     if pattern
       case pattern.class.to_s
       when 'Class' then my_all? { |item| item.is_a?(pattern) }
       when 'Regexp' then my_all? { |item| item =~ pattern }
-      else false
+      else my_all? { |item| item == pattern }
       end
     else
-      my_each_with_index { |item| return false unless yield item }
-      true
+      my_all? { |item| item }
     end
   end
 
   def my_any?(pattern = nil)
-    return my_any? { |item| item } unless block_given?
-
+    if block_given?
+      my_each_with_index { |item| return true if yield item }
+      return false
+    end
     if pattern
       case pattern.class.to_s
       when 'Class' then my_any? { |item| item.is_a?(pattern) }
       when 'Regexp' then my_any? { |item| item =~ pattern }
-      else false
+      else my_all? { |item| item == pattern }
       end
     else
-      my_each_with_index { |item| return true if yield item }
-      false
+      my_any? { |item| item }
     end
   end
 
   def my_none?(pattern = nil)
-    return my_none? { |item| item } unless block_given?
-
+    if block_given?
+      my_each_with_index { |item| return false if yield item }
+      return true
+    end
     if pattern
       case pattern.class.to_s
       when 'Class' then my_none? { |item| item.is_a?(pattern) }
       when 'Regexp' then my_none? { |item| item =~ pattern }
-      else false
+      else my_all? { |item| item == pattern }
       end
     else
-      my_each_with_index { |item| return false if yield item }
-      true
+      my_none? { |item| item }
     end
   end
 
   def my_count(search = nil)
     counter = 0
-    return length unless block_given?
+    return to_a.length unless block_given? || search
 
     if search
       my_count { |item| item == search }
     else
-      my_each_with_index { |item| counter += 1 if yield(item) }
+      my_each { |item| counter += 1 if yield(item) }
       counter
     end
   end
 
   def my_map(proc = nil)
     map = []
-    return to_enum(:my_map) unless block_given?
+    return to_enum(:my_map) unless block_given? || proc
 
     if proc.is_a?(Proc)
-      my_each_with_index { |item| map << proc.call(item) }
+      my_each { |item| map << proc.call(item) }
     else
-      my_each_with_index { |item| map << yield(item) }
+      my_each { |item| map << yield(item) }
     end
     map
   end
 
   def my_inject(memo = nil, &_sym)
-    my_each_with_index { |item| memo = memo.nil? ? item : yield(memo, item) }
+    my_each { |item| memo = memo.nil? ? item : yield(memo, item) }
     memo
   end
 
