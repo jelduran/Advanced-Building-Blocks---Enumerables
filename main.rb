@@ -25,7 +25,7 @@ module Enumerable
 
   def my_all?(pattern = nil)
     if block_given?
-      my_each_with_index { |item| return false unless yield item }
+      my_each { |item| return false unless yield item }
       return true
     end
     if pattern
@@ -41,7 +41,7 @@ module Enumerable
 
   def my_any?(pattern = nil)
     if block_given?
-      my_each_with_index { |item| return true if yield item }
+      my_each { |item| return true if yield item }
       return false
     end
     if pattern
@@ -57,7 +57,7 @@ module Enumerable
 
   def my_none?(pattern = nil)
     if block_given?
-      my_each_with_index { |item| return false if yield item }
+      my_each { |item| return false if yield item }
       return true
     end
     if pattern
@@ -95,12 +95,14 @@ module Enumerable
     map
   end
 
-  def my_inject(memo = nil, &_sym)
-    my_each { |item| memo = memo.nil? ? item : yield(memo, item) }
+  def my_inject(memo = nil)
+    if memo.is_a?(Symbol)
+      proc = memo.to_proc
+      memo = nil
+      my_each { |item| memo = memo.nil? ? item : proc.call(memo, item) }
+    else
+      my_each { |item| memo = memo.nil? ? item : yield(memo, item) }
+    end
     memo
-  end
-
-  def multiply_els
-    my_inject(&:*)
   end
 end
