@@ -1,28 +1,30 @@
 # Advanced-Building-Blocks---Enumerables
 By Carlos Robles & John Durán.
 
-This project we used Ruby to build it.
+This project was built with Ruby.
 We created Enumerable class method.
 And we work on how to create methods inside classes.
 
 This is the list of the methods that we created:
-- my_each
-- my_each_with_index
-- my_select
-- my_all?
-- my_any?
-- my_none?
-- my_count
-- my_map
-- my_inject
-- multiply_els
- 
+
+```
+my_each
+my_each_with_index
+my_select
+my_all?
+my_any?
+my_none?
+my_count
+my_map
+my_inject
+multiply_els
+```
 ![Screenshot](/img/my-enum-methods.png)
 
 
 ## Built With
 
-- Ruby
+`Ruby`
 
 
 ## Live Demo
