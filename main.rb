@@ -106,3 +106,7 @@ module Enumerable
     memo
   end
 end
+
+def multiply_els(numbers)
+  numbers.my_inject(&:*)
+end
