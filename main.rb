@@ -95,10 +95,13 @@ module Enumerable
     map
   end
 
-  def my_inject(memo = nil)
+  def my_inject(memo = nil, sym = nil)
     if memo.is_a?(Symbol)
       proc = memo.to_proc
       memo = nil
+      my_each { |item| memo = memo.nil? ? item : proc.call(memo, item) }
+    elsif sym.is_a?(Symbol)
+      proc = sym.to_proc
       my_each { |item| memo = memo.nil? ? item : proc.call(memo, item) }
     else
       my_each { |item| memo = memo.nil? ? item : yield(memo, item) }
