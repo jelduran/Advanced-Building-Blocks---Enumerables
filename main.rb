@@ -64,7 +64,7 @@ module Enumerable
       case pattern.class.to_s
       when 'Class' then my_none? { |item| item.is_a?(pattern) }
       when 'Regexp' then my_none? { |item| item =~ pattern }
-      else my_any? { |item| item == pattern }
+      else my_none? { |item| item == pattern }
       end
     else
       my_none? { |item| item }
