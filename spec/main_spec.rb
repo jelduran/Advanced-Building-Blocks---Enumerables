@@ -62,5 +62,9 @@ describe Enumerable do
     it 'checks if block given are integers' do
       expect(arr.my_all?(Integer)).to eql true
     end
+
+    it 'checks if block given are String' do
+      expect(arr.my_all?(String)).to eql false
+    end
   end
 end
