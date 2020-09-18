@@ -53,4 +53,10 @@ describe Enumerable do
       expect(hsh.my_select { |index| index }).to eql(hsh)
     end
   end
+
+  describe '#my_all?' do
+    it 'checks if it returns true for all elements when condition is met' do
+      expect(arr.my_all? {|x| x >= 1}).to eql true
+    end
+  end
 end
