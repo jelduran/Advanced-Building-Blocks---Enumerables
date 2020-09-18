@@ -19,4 +19,10 @@ describe Enumerable do
       expect(target).to(satisfy { |t| t == [6, 7, 8, 9, 10] })
     end
   end
+
+  describe '#my_each_with_index' do
+    it 'checks if it returns an Enumerator object when no block is given' do 
+      expect(arr.my_each_with_index).to(satisfy { |output| output.is_a?(Enumerator) })
+    end
+end
 end
