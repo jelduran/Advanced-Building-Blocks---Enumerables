@@ -48,5 +48,9 @@ describe Enumerable do
     it 'checks if it returns an Enumerator object when no block is given' do
       expect(arr.my_select).to(satisfy { |output| output.is_a?(Enumerator) })
     end
+
+    it 'checks if hash is returned when a hash is passed' do
+      expect(hsh.my_select { |index| index }).to eql(hsh)
+    end
   end
 end
