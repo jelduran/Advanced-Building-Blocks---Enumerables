@@ -39,4 +39,10 @@ describe Enumerable do
       expect(target).to eql [0, 1, 2, 3, 4]
     end
   end
+
+  describe '#my_select' do
+    it 'selects elements with specific property from array and return' do
+      expect(arr.my_select(&:odd?)).to eql([1, 3, 5])
+    end
+  end
 end
