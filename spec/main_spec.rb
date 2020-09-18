@@ -58,5 +58,9 @@ describe Enumerable do
     it 'checks if it returns true for all elements when condition is met' do
       expect(arr.my_all? {|x| x >= 1}).to eql true
     end
+
+    it 'checks if block given are integers' do
+      expect(arr.my_all?(Integer)).to eql true
+    end
   end
 end
