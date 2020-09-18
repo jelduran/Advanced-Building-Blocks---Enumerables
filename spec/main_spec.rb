@@ -8,5 +8,9 @@ describe Enumerable do
     it 'checks if returns an Enumerator object when no block is given.' do
       expect(arr.my_each).to(satisfy { |output| output.is_a?(Enumerator) })
     end
+
+    it 'checks if array is returned when block is given' do
+      expect(arr.my_each {|index| index}).to eql(arr)
+    end
   end
 end
