@@ -4,6 +4,7 @@ require_relative '../main'
 
 describe Enumerable do
   let(:arr) { [1, 2, 3, 4, 5] }
+  let(:hsh) { {one:1, two:2, three:3, four:4, five:5} }
   let(:target) { [] }
   describe '#my_each' do
     it 'checks if returns an Enumerator object when no block is given.' do
@@ -21,8 +22,16 @@ describe Enumerable do
   end
 
   describe '#my_each_with_index' do
-    it 'checks if it returns an Enumerator object when no block is given' do 
+    it 'checks if it returns an Enumerator object when no block is given' do
       expect(arr.my_each_with_index).to(satisfy { |output| output.is_a?(Enumerator) })
     end
-end
+
+    it 'checks if array is returned when block is given' do
+      expect(arr.my_each_with_index { |index| index }).to eql(arr)
+    end
+
+    it 'checks if hash is returned when block is given' do
+      expect(hsh.my_each_with_index { |index| index }).to eql(hsh)
+    end
+  end
 end
