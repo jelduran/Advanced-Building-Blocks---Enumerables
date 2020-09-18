@@ -33,5 +33,10 @@ describe Enumerable do
     it 'checks if hash is returned when block is given' do
       expect(hsh.my_each_with_index { |index| index }).to eql(hsh)
     end
+
+    it 'checks if index is sent to the block' do
+      arr.my_each_with_index { |i| target.push(i-1)} 
+      expect(target).to eql [0, 1, 2, 3, 4]
+    end
   end
 end
