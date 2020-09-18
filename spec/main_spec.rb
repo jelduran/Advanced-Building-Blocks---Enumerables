@@ -6,6 +6,7 @@ describe Enumerable do
   let(:arr) { [1, 2, 3, 4, 5] }
   let(:hsh) { {one:1, two:2, three:3, four:4, five:5} }
   let(:target) { [] }
+  let(:str) {['hi', 'how', 'hello']}
   describe '#my_each' do
     it 'checks if returns an Enumerator object when no block is given.' do
       expect(arr.my_each).to(satisfy { |output| output.is_a?(Enumerator) })
@@ -65,6 +66,10 @@ describe Enumerable do
 
     it 'checks if block given are String' do
       expect(arr.my_all?(String)).to eql false
+    end
+
+    it 'checks if characters in a Regexp match' do
+      expect(str.my_all?(/h/)).to eql true
     end
   end
 end
