@@ -44,5 +44,9 @@ describe Enumerable do
     it 'selects elements with specific property from array and return' do
       expect(arr.my_select(&:odd?)).to eql([1, 3, 5])
     end
+
+    it 'checks if it returns an Enumerator object when no block is given' do
+      expect(arr.my_select).to(satisfy { |output| output.is_a?(Enumerator) })
+    end
   end
 end
