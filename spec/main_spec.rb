@@ -77,5 +77,9 @@ describe Enumerable do
     it 'checks if returns true when any element in the enumerable meets a given condition' do
       expect(arr.my_any? { |i| i.even? }).to eql(true)
     end
+
+    it 'checks if returns false when no element in the enumerable meets a given condition' do
+      expect( str.my_any? { |i| i.is_a?(Numeric) }).to eql(false)
+    end
   end
 end
