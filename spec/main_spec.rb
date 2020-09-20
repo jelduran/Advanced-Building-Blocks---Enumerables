@@ -81,5 +81,9 @@ describe Enumerable do
     it 'checks if returns false when no element in the enumerable meets a given condition' do
       expect( str.my_any? { |i| i.is_a?(Numeric) }).to eql(false)
     end
+
+    it 'checks if any element in the enumerable match with a given regular expression pattern' do
+      expect(str.any?(/h*/)).to eql(true)
+    end
   end
 end
