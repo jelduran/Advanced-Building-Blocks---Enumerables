@@ -72,4 +72,10 @@ describe Enumerable do
       expect(str.my_all?(/h/)).to eql true
     end
   end
+
+  describe '#my_any?' do
+    it 'checks if returns true when any element in the enumerable meets a given condition' do
+      expect(arr.my_any? { |i| i.even? }).to eql(true)
+    end
+  end
 end
