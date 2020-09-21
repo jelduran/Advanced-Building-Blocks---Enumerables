@@ -85,5 +85,9 @@ describe Enumerable do
     it 'checks if any element in the enumerable match with a given regular expression pattern' do
       expect(str.any?(/h*/)).to eql(true)
     end
+
+    it 'checks if not true when enumerable contains no-string-data-type elements and they are compared to a given regular expression pattern' do
+      expect( arr.my_any?(/d/)).to_not eql(true)
+    end
   end
 end
