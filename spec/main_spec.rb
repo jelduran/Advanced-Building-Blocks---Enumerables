@@ -89,5 +89,9 @@ describe Enumerable do
     it 'checks if not true when enumerable contains no-string-data-type elements and they are compared to a given regular expression pattern' do
       expect( arr.my_any?(/d/)).to_not eql(true)
     end
+
+    it 'checks if any element in the enumerable is a given type of object' do
+      expect([nil, 10, "ten", 10.0].my_any?(Float)).to eql(true)
+    end
   end
 end
