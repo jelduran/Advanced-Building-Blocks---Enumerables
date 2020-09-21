@@ -146,8 +146,14 @@ describe Enumerable do
       expect(arr.my_count).to eql(5)
     end
 
-    it 'returns the number of items in the enumerable' do
+    it 'returns the number of items in the enumerable that are equal to the item counted' do
       expect(arr.my_count(2)).to eql(1)
+    end
+  end
+
+  describe '#my_map' do
+    it 'checks if a new enumerable is created from applying a block to every item in the caller object' do
+      expect(arr.my_map {|i| i*i}).to eql [1, 4, 9, 16, 25]
     end
   end
 end
