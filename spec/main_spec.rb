@@ -173,5 +173,9 @@ describe Enumerable do
     it 'computes all the items in enumerable according to an initial memo value and an operator and returns the result' do
       expect(arr.my_inject(100, :-)).to eql(85)
     end
+    
+    it 'computes all the items in enumerable according to an initial memo value and a block and returns the result' do
+      expect(arr.my_inject(1000.0) { |div, i| div / i }).to eql(8.333333333333332)
+    end
   end
 end
