@@ -155,5 +155,9 @@ describe Enumerable do
     it 'checks if a new enumerable is created from applying a block to every item in the caller object' do
       expect(arr.my_map {|i| i*i}).to eql [1, 4, 9, 16, 25]
     end
+
+    it 'checks if no block is given and returns an enumerator' do
+      expect(arr.my_map).to(satisfy { |output| output.is_a?(Enumerator) })
+    end
   end
 end
