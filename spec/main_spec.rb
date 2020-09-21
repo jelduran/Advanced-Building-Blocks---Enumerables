@@ -123,5 +123,9 @@ describe Enumerable do
     it 'checks if no element in the enumerable is a given type of object' do
       expect([nil, 10, 'ten', '10.0'].my_none?(Float)).to eql(true)
     end
+
+    it 'checks if returns true when enumerable is full of not-true elements and neither argument nor block are given' do
+      expect([nil, false, nil].my_none?).to eql(true)
+    end
   end
 end
