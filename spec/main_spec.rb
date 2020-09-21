@@ -160,4 +160,10 @@ describe Enumerable do
       expect(arr.my_map).to(satisfy { |output| output.is_a?(Enumerator) })
     end
   end
+
+  describe '#my_inject' do
+    it 'checks if all the items in enumerable are computed according to a given operator' do
+      expect(arr.my_inject(:*)).to eql(120)
+    end
+  end
 end
