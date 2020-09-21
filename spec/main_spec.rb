@@ -97,5 +97,9 @@ describe Enumerable do
     it 'checks if returns true when enumerable is not empty and neither argument nor block are given' do
       expect(arr.my_any?).to eql(true)
     end
+
+    it 'checks if returns false when enumerable is empty and neither argument nor block are given' do
+      expect([].my_any?).to eql(false)
+    end
   end
 end
