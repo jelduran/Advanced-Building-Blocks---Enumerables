@@ -116,8 +116,12 @@ describe Enumerable do
       expect(str.none?(/g/)).to eql(true)
     end
 
-    it 'checks if true when enumerable contains no-string-data-type elements and they are compared to a given regular expression pattern' do
+    it 'checks if not false when enumerable contains no-string-data-type elements and they are compared to a given regular expression pattern' do
       expect(arr.my_none?(/d/)).to_not eql(false)
+    end
+
+    it 'checks if no element in the enumerable is a given type of object' do
+      expect([nil, 10, 'ten', '10.0'].my_none?(Float)).to eql(true)
     end
   end
 end
