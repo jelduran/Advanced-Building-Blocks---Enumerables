@@ -162,12 +162,16 @@ describe Enumerable do
   end
 
   describe '#my_inject' do
-    it 'checks if all the items in enumerable are computed according to a given operator' do
+    it 'computes all the items in enumerable according to a given operator and returns the result' do
       expect(arr.my_inject(:*)).to eql(120)
     end
 
-    it 'checks if all the items in enumerable are computed according to a given block' do
+    it 'computes all the items in enumerable according to a given block and returns the result' do
       expect(arr.my_inject { |sum, i| sum + i }).to eql(15)
+    end
+
+    it 'computes all the items in enumerable according to an initial memo value and an operator and returns the result' do
+      expect(arr.my_inject(100, :-)).to eql(85)
     end
   end
 end
