@@ -113,7 +113,7 @@ describe Enumerable do
     end
 
     it 'checks if no element in the enumerable match with a given regular expression pattern' do
-      expect(str.none?(/g/)).to eql(true)
+      expect(str.my_none?(/g/)).to eql(true)
     end
 
     it 'checks if not false when enumerable contains no-string-data-type elements and they are compared to a given regular expression pattern' do
@@ -126,6 +126,10 @@ describe Enumerable do
 
     it 'checks if returns true when enumerable is full of not-true elements and neither argument nor block are given' do
       expect([nil, false, nil].my_none?).to eql(true)
+    end
+
+    it 'checks if returns true when enumerable is empty and neither argument nor block are given' do
+      expect([].my_none?).to eql(true)
     end
   end
 end
