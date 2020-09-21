@@ -141,5 +141,9 @@ describe Enumerable do
     it 'returns the number of items in the enumerable when a block is given' do
       expect(arr.my_count {|x| x >2}).to eql(3)
     end
+
+    it 'returns the number of items in the enumerable' do
+      expect(arr.my_count).to eql(5)
+    end
   end
 end
