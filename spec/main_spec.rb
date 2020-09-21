@@ -83,7 +83,7 @@ describe Enumerable do
     end
 
     it 'checks if any element in the enumerable match with a given regular expression pattern' do
-      expect(str.any?(/h*/)).to eql(true)
+      expect(str.my_any?(/h/)).to eql(true)
     end
 
     it 'checks if not true when enumerable contains no-string-data-type elements and they are compared to a given regular expression pattern' do
@@ -110,6 +110,10 @@ describe Enumerable do
 
     it 'checks if returns false when any element in the enumerable meets a given condition' do
       expect(str.my_none? { |i| i == 'hi' }).to eql(false)
+    end
+
+    it 'checks if no element in the enumerable match with a given regular expression pattern' do
+      expect(str.none?(/g/)).to eql(true)
     end
   end
 end
