@@ -93,5 +93,9 @@ describe Enumerable do
     it 'checks if any element in the enumerable is a given type of object' do
       expect([nil, 10, "ten", 10.0].my_any?(Float)).to eql(true)
     end
+
+    it 'checks if returns true when enumerable is not empty and neither argument nor block are given' do
+      expect(arr.my_any?).to eql(true)
+    end
   end
 end
