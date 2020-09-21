@@ -136,4 +136,10 @@ describe Enumerable do
       expect([nil, true, nil].my_none?).to eql(false)
     end
   end
+
+  describe '#my_count' do
+    it 'returns the number of items in the enumerable when a block is given' do
+      expect(arr.my_count {|x| x >2}).to eql(3)
+    end
+  end
 end
