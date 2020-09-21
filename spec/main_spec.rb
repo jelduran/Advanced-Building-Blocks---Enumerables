@@ -165,5 +165,9 @@ describe Enumerable do
     it 'checks if all the items in enumerable are computed according to a given operator' do
       expect(arr.my_inject(:*)).to eql(120)
     end
+
+    it 'checks if all the items in enumerable are computed according to a given block' do
+      expect(arr.my_inject { |sum, i| sum + i }).to eql(15)
+    end
   end
 end
