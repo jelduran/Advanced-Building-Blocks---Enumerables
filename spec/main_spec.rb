@@ -1,12 +1,13 @@
+# rubocop: disable Layout/LineLength
 # spec/main_spec.rb
 
 require_relative '../main'
 
 describe Enumerable do
   let(:arr) { [1, 2, 3, 4, 5] }
-  let(:hsh) { {one:1, two:2, three:3, four:4, five:5} }
+  let(:hsh) { { one: 1, two: 2, three: 3, four: 4, five: 5 } }
   let(:target) { [] }
-  let(:str) {['hi', 'how', 'hello']}
+  let(:str) { %w[hi how hello] }
   describe '#my_each' do
     it 'checks if returns an Enumerator object when no block is given.' do
       expect(arr.my_each).to(satisfy { |output| output.is_a?(Enumerator) })
@@ -36,7 +37,7 @@ describe Enumerable do
     end
 
     it 'checks if index is sent to the block' do
-      arr.my_each_with_index { |i| target.push(i-1)} 
+      arr.my_each_with_index { |i| target.push(i - 1) }
       expect(target).to eql [0, 1, 2, 3, 4]
     end
   end
@@ -57,7 +58,7 @@ describe Enumerable do
 
   describe '#my_all?' do
     it 'checks if it returns true for all elements when condition is met' do
-      expect(arr.my_all? {|x| x >= 1}).to eql true
+      expect(arr.my_all? { |x| x >= 1 }).to eql true
     end
 
     it 'checks if block given are integers' do
@@ -75,11 +76,11 @@ describe Enumerable do
 
   describe '#my_any?' do
     it 'checks if returns true when any element in the enumerable meets a given condition' do
-      expect(arr.my_any? { |i| i.even? }).to eql(true)
+      expect(arr.my_any?(&:even?)).to eql(true)
     end
 
     it 'checks if returns false when no element in the enumerable meets a given condition' do
-      expect( str.my_any? { |i| i.is_a?(Numeric) }).to eql(false)
+      expect(str.my_any? { |i| i.is_a?(Numeric) }).to eql(false)
     end
 
     it 'checks if any element in the enumerable match with a given regular expression pattern' do
@@ -87,11 +88,11 @@ describe Enumerable do
     end
 
     it 'checks if not true when enumerable contains no-string-data-type elements and they are compared to a given regular expression pattern' do
-      expect( arr.my_any?(/d/)).to_not eql(true)
+      expect(arr.my_any?(/d/)).to_not eql(true)
     end
 
     it 'checks if any element in the enumerable is a given type of object' do
-      expect([nil, 10, "ten", 10.0].my_any?(Float)).to eql(true)
+      expect([nil, 10, 'ten', 10.0].my_any?(Float)).to eql(true)
     end
 
     it 'checks if returns true when enumerable is not empty and neither argument nor block are given' do
@@ -139,7 +140,7 @@ describe Enumerable do
 
   describe '#my_count' do
     it 'returns the number of items in the enumerable when a block is given' do
-      expect(arr.my_count {|x| x >2}).to eql(3)
+      expect(arr.my_count { |x| x > 2 }).to eql(3)
     end
 
     it 'returns the number of items in the enumerable' do
@@ -153,7 +154,7 @@ describe Enumerable do
 
   describe '#my_map' do
     it 'checks if a new enumerable is created from applying a block to every item in the caller object' do
-      expect(arr.my_map {|i| i*i}).to eql [1, 4, 9, 16, 25]
+      expect(arr.my_map { |i| i * i }).to eql [1, 4, 9, 16, 25]
     end
 
     it 'checks if no block is given and returns an enumerator' do
@@ -179,7 +180,8 @@ describe Enumerable do
     end
 
     it 'computes longest string in array and return it' do
-      expect( str.my_inject { |m, w| m.length > w.length ? m : w } ).to eql('hello')
+      expect(str.my_inject { |m, w| m.length > w.length ? m : w }).to eql('hello')
     end
   end
 end
+# rubocop: enable Layout/LineLength
