@@ -102,4 +102,10 @@ describe Enumerable do
       expect([].my_any?).to eql(false)
     end
   end
+
+  describe '#my_none?' do
+    it 'checks if returns true when no element in the enumerable meets a given condition' do
+      expect(arr.my_none? { |i| i > 5 }).to eql(true)
+    end
+  end
 end
