@@ -145,5 +145,9 @@ describe Enumerable do
     it 'returns the number of items in the enumerable' do
       expect(arr.my_count).to eql(5)
     end
+
+    it 'returns the number of items in the enumerable' do
+      expect(arr.my_count(2)).to eql(1)
+    end
   end
 end
