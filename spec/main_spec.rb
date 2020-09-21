@@ -131,5 +131,9 @@ describe Enumerable do
     it 'checks if returns true when enumerable is empty and neither argument nor block are given' do
       expect([].my_none?).to eql(true)
     end
+
+    it 'checks if returns false when enumerable has any true value and neither argument nor block are given' do
+      expect([nil, true, nil].my_none?).to eql(false)
+    end
   end
 end
