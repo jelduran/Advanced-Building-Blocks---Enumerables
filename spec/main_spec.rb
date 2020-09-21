@@ -115,5 +115,9 @@ describe Enumerable do
     it 'checks if no element in the enumerable match with a given regular expression pattern' do
       expect(str.none?(/g/)).to eql(true)
     end
+
+    it 'checks if true when enumerable contains no-string-data-type elements and they are compared to a given regular expression pattern' do
+      expect(arr.my_none?(/d/)).to_not eql(false)
+    end
   end
 end
